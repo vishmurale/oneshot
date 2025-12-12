@@ -1,0 +1,252 @@
+body {
+  margin: 0;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4rem;
+  padding: 4rem 2rem;
+  /* Ensure hero takes available space but allows footer to sit at bottom */
+  flex: 1; 
+}
+
+.content {
+  max-width: 500px;
+}
+
+h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  line-height: 1.1; /* Tighter line height for titles */
+  /* ADDED: Ensures header doesn't wrap awkwardly before breakpoint */
+  min-width: fit-content; 
+}
+
+p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.sold-out {
+  background: linear-gradient(135deg, #ff4d4d, #cc0000);
+  color: white;
+  padding: 0.3rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+  white-space: nowrap; /* Prevents badge text from wrapping awkwardly */
+  /* ADDED: Ensures badge is visible when header is tight */
+  flex-shrink: 0; 
+}  
+
+form {
+  display: flex;
+  gap: 0.5rem;
+}
+
+input[type="email"] {
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border: none;
+  flex: 1;
+  font-size: 1rem; 
+}
+
+.title-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem; 
+  /* ADDED: Ensures title and badge stay on one line unless forced to wrap */
+  white-space: nowrap; 
+}
+
+.title-row h1 {
+  margin: 0;
+}
+
+button {
+  background-color: #4ae266;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease;
+  white-space: nowrap;
+}
+
+button:hover {
+  background-color: #357ABD;
+}
+
+.image {
+  flex: 1;
+  display: flex;
+  justify-content: center; 
+}
+
+.image img {
+  width: 60vw;
+  max-width: 600px;
+  min-width: 200px;
+  height: auto;
+  filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5)); 
+}
+
+footer {
+  text-align: center;
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.features {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 1rem;
+}
+
+.features div {
+  max-width: 200px;
+}
+
+
+/* --- Custom Modal Styles for Success Message (Add this to style.css) --- */
+
+.modal-overlay {
+/* Hides the modal by default (CRITICAL CORRECTION) */
+  display: none; 
+  /* Fixed positioning to cover the whole screen */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Semi-transparent dark background */
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  /* NO DISPLAY: FLEX HERE */
+}
+
+.modal-content {
+  /* Styles matching the Clarity brand */
+  background: white;
+  color: #2c5364; /* Dark text color */
+  padding: 30px;
+  border-radius: 12px;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  transform: scale(0.9); /* Start slightly smaller for a nice transition */
+  transition: all 0.3s ease-out;
+}
+
+.modal-content h2 {
+  font-size: 1.8rem;
+  margin-top: 0;
+}
+
+.modal-content p {
+  font-size: 1rem;
+  margin-bottom: 20px;
+  line-height: 1.4;
+}
+
+.modal-overlay.active {
+/* Class to show the modal (NOW IT WILL ONLY SHOW WHEN THIS CLASS IS PRESENT) */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-overlay.active .modal-content {
+  /* Scales the modal up when shown */
+  transform: scale(1);
+}
+
+.close-btn {
+  /* Reusing the button styles from the main page, but with white background */
+  background-color: #f0f0f0; 
+  color: #2c5364; 
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease;
+  width: 100%;
+}
+
+.close-btn:hover {
+  background-color: #dcdcdc; 
+}
+
+/* --- MOBILE RESPONSIVENESS --- */
+/* CHANGED: The breakpoint is now 900px. 
+   This ensures the vertical stack kicks in earlier,
+   giving more space to the header and content. 
+*/
+@media (max-width: 1200px) { 
+  .hero {
+    flex-direction: column; 
+    padding: 3rem 1.5rem;
+    gap: 3rem;
+    text-align: center;
+  }
+
+  .title-row {
+    justify-content: center; 
+    flex-wrap: wrap; 
+    white-space: normal; /* Allow wrapping once in column layout */
+  }
+  
+  .title-row h1 {
+      min-width: unset; /* Remove min-width when stacked */
+  }
+
+  .content {
+    max-width: 100%;
+  }
+
+  h1 {
+    font-size: 2.5rem; 
+  }
+
+  /* Stack the form inputs vertically on mobile */
+  form {
+    flex-direction: column; 
+    width: 100%;
+  }
+
+  input[type="email"], button {
+    width: 100%; 
+    box-sizing: border-box;
+  }
+
+  .image img {
+    width: 80%; 
+    max-width: 350px;
+  }
+
+  .features {
+    flex-direction: column; 
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .features div {
+    max-width: 100%;
+  }
+}
