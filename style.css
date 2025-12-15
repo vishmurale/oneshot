@@ -35,32 +35,56 @@ p {
   margin-bottom: 2rem;
 }
 
-.sold-out {
-  background: linear-gradient(135deg, #ff4d4d, #cc0000);
-  color: white;
-  padding: 0.3rem 0.75rem;
-  border-radius: 6px;
-  font-size: 0.9rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.3);
-  white-space: nowrap; /* Prevents badge text from wrapping awkwardly */
-  /* ADDED: Ensures badge is visible when header is tight */
-  flex-shrink: 0; 
-}  
+/* REMOVED: .sold-out style */
 
+/* Renamed the main page button to be a primary button */
+.main-cta-button { 
+  background-color: #4ae266;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease;
+  white-space: nowrap;
+  font-size: 1.1rem; /* Slightly larger font for the main CTA */
+  display: inline-block; /* Make it look like a block button */
+}
+
+.main-cta-button:hover {
+  background-color: #357ABD;
+}
+
+/* Original form style - now applies to the form inside the modal */
 form {
   display: flex;
   gap: 0.5rem;
 }
 
-input[type="email"] {
+/* Ensures the form elements inside the modal match the original styles */
+#waitlist-modal input[type="email"] {
   padding: 0.75rem 1rem;
   border-radius: 8px;
   border: none;
   flex: 1;
   font-size: 1rem; 
+}
+
+#waitlist-modal button[type="submit"] {
+  background-color: #4ae266;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease;
+  white-space: nowrap;
+}
+
+#waitlist-modal button[type="submit"]:hover {
+  background-color: #357ABD;
 }
 
 .title-row {
@@ -75,21 +99,6 @@ input[type="email"] {
   margin: 0;
 }
 
-button {
-  background-color: #4ae266;
-  color: white;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background 0.3s ease;
-  white-space: nowrap;
-}
-
-button:hover {
-  background-color: #357ABD;
-}
 
 .image {
   flex: 1;
@@ -123,33 +132,28 @@ footer {
 }
 
 
-/* --- Custom Modal Styles for Success Message (Add this to style.css) --- */
+/* --- Custom Modal Styles --- */
 
 .modal-overlay {
-/* Hides the modal by default (CRITICAL CORRECTION) */
   display: none; 
-  /* Fixed positioning to cover the whole screen */
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  /* Semi-transparent dark background */
   background-color: rgba(0, 0, 0, 0.7);
   z-index: 1000;
-  /* NO DISPLAY: FLEX HERE */
 }
 
 .modal-content {
-  /* Styles matching the Clarity brand */
   background: white;
-  color: #2c5364; /* Dark text color */
+  color: #2c5364; 
   padding: 30px;
   border-radius: 12px;
   max-width: 400px;
   text-align: center;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  transform: scale(0.9); /* Start slightly smaller for a nice transition */
+  transform: scale(0.9); 
   transition: all 0.3s ease-out;
 }
 
@@ -165,19 +169,17 @@ footer {
 }
 
 .modal-overlay.active {
-/* Class to show the modal (NOW IT WILL ONLY SHOW WHEN THIS CLASS IS PRESENT) */
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .modal-overlay.active .modal-content {
-  /* Scales the modal up when shown */
   transform: scale(1);
 }
 
+/* This is the close button inside the modal */
 .close-btn {
-  /* Reusing the button styles from the main page, but with white background */
   background-color: #f0f0f0; 
   color: #2c5364; 
   border: none;
@@ -187,6 +189,7 @@ footer {
   font-weight: bold;
   transition: background 0.3s ease;
   width: 100%;
+  margin-top: 1rem; /* Added space above the close button */
 }
 
 .close-btn:hover {
@@ -194,10 +197,6 @@ footer {
 }
 
 /* --- MOBILE RESPONSIVENESS --- */
-/* CHANGED: The breakpoint is now 900px. 
-   This ensures the vertical stack kicks in earlier,
-   giving more space to the header and content. 
-*/
 @media (max-width: 1200px) { 
   .hero {
     flex-direction: column; 
@@ -209,11 +208,11 @@ footer {
   .title-row {
     justify-content: center; 
     flex-wrap: wrap; 
-    white-space: normal; /* Allow wrapping once in column layout */
+    white-space: normal; 
   }
   
   .title-row h1 {
-      min-width: unset; /* Remove min-width when stacked */
+      min-width: unset; 
   }
 
   .content {
@@ -224,15 +223,21 @@ footer {
     font-size: 2.5rem; 
   }
 
-  /* Stack the form inputs vertically on mobile */
-  form {
+  /* Stack the form inputs vertically on mobile ONLY inside the modal */
+  #waitlist-modal form {
     flex-direction: column; 
     width: 100%;
   }
 
-  input[type="email"], button {
+  #waitlist-modal input[type="email"], #waitlist-modal button[type="submit"] {
     width: 100%; 
     box-sizing: border-box;
+  }
+  
+  /* Make the main Buy Now button full width on mobile */
+  .main-cta-button {
+      width: 100%;
+      box-sizing: border-box;
   }
 
   .image img {
