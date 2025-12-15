@@ -27,6 +27,7 @@ function hideModal(modalElement) {
 // 1. Open the Waitlist Modal when "Buy now" is clicked
 buyNowBtn.addEventListener('click', () => {
   showModal(waitlistModal);
+  gtag('event', 'buy_now');
 });
 
 
@@ -77,6 +78,8 @@ waitlistForm.addEventListener('submit', e => {
     
     // 3. Reset the form for the next entry
     waitlistForm.reset();
+
+    gtag('event', 'sign_up');
     
   }).catch(() => {
     console.log("There was a problem submitting your email. Please try again!");
