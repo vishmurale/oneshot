@@ -40,7 +40,7 @@ p {
 /* Renamed the main page button to be a primary button */
 .main-cta-button { 
   background-color: #4ae266;
-  color: white;
+  color: black;
   border: none;
   padding: 0.75rem 1.5rem;
   border-radius: 8px;
@@ -54,6 +54,7 @@ p {
 
 .main-cta-button:hover {
   background-color: #357ABD;
+  color: white; 
 }
 
 /* Original form style - now applies to the form inside the modal */
@@ -73,7 +74,7 @@ form {
 
 #waitlist-modal button[type="submit"] {
   background-color: #4ae266;
-  color: white;
+  color: black;
   border: none;
   padding: 0.75rem 1.5rem;
   border-radius: 8px;
@@ -85,6 +86,7 @@ form {
 
 #waitlist-modal button[type="submit"]:hover {
   background-color: #357ABD;
+  color: white;
 }
 
 .title-row {
@@ -124,11 +126,33 @@ footer {
   display: flex;
   justify-content: center;
   gap: 2rem;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 }
 
 .features div {
   max-width: 200px;
+}
+
+/* Feature Titles (strong tag inside features div) */
+.features div strong {
+  font-size: 1.4rem;
+  /* CRITICAL UPDATE: Feature titles are WHITE */
+  color: #fff;
+}
+
+/* Feature Descriptions (p tag inside features div) */
+.features div p {
+  font-size: 1.3rem;
+  margin-bottom: 0;
+  /* CRITICAL UPDATE: Feature descriptions are light gray/white */
+  color: #ccc;
+}
+
+footer p {
+  font-size: 0.8rem;
+  margin: 0;
+  /* CRITICAL UPDATE: Ensure copyright text is white */
+  color: #aaa;
 }
 
 
@@ -245,13 +269,23 @@ footer {
     max-width: 350px;
   }
 
+
   .features {
-    flex-direction: column; 
+    flex-direction: column;
     align-items: center;
     gap: 1.5rem;
+    margin-bottom: 2rem;
   }
 
   .features div {
     max-width: 100%;
+  }
+
+  .features div strong {
+    font-size: 1.2rem;
+  }
+
+  .features div p {
+    font-size: 1.1rem;
   }
 }
